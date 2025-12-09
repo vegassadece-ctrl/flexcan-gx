@@ -1,2 +1,0 @@
-# flexcan-gx
- Flexcan webxx
