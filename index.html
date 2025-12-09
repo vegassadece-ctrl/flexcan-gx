@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexcan GX</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{background:#0f0f1a;color:#fff;font-family:'Segoe UI',sans-serif;height:100vh;display:flex;flex-direction:column;overflow:hidden}
+        .topbar{background:#181825;height:40px;display:flex;align-items:center;padding:0 15px;box-shadow:0 2px 10px rgba(0,0,0,0.5)}
+        .logo{font-size:22px;font-weight:bold;color:#00ff9d}
+        .search{width:100%;max-width:600px;margin:0 auto;margin-top:80px;position:relative}
+        #query{width:100%;padding:18px 70px 18px 25px;font-size:20px;background:#1e1e2e;border:none;border-radius:50px;outline:none;color:#fff;box-shadow:0 10px 30px rgba(0,0,0,0.6)}
+        #send{position:absolute;right:10px;top:10px;background:#00ff9d;color:#000;border:none;width:50px;height:50px;border-radius:50%;font-size:28px;cursor:pointer}
+        #ai-response{margin:30px auto;max-width:700px;padding:20px;background:#1e1e2e;border-radius:15px;display:none;box-shadow:0 5px 20px rgba(0,255,150,0.2)}
+        .sidebar-toggle{position:fixed;right:0;top:50%;transform:translateY(-50%);background:#00ff9d;color:#000;padding:15px 8px;border-radius:10px 0 0 10px;font-size:28px;cursor:pointer;z-index:9999}
+    </style>
+</head>
+<body>
+    <div class="topbar">
+        <div class="logo">Flexcan GX</div>
+    </div>
+
+    <div class="search">
+        <input type="text" id="query" placeholder="Yapay zekâya sor, her şeyi bilir..." autocomplete="off">
+        <button id="send">→</button>
+    </div>
+
+    <div id="ai-response"></div>
+
+    <div class="sidebar-toggle">◄</div>
+
+    <script>
+        const input = document.getElementById('query');
+        const btn = document.getElementById('send');
+        const res = document.getElementById('ai-response');
+
+        function sor() {
+            const soru = input.value.trim();
+            if (!soru) return;
+            res.style.display = 'block';
+            res.innerHTML = `<strong>Soru:</strong> ${soru}<br><br>▸ Düşünüyorum...`;
+            
+            setTimeout(() => {
+                res.innerHTML = `<strong>Soru:</strong> ${soru}<br><br>
+                <strong>Flexcan GX AI:</strong> Selam kral! Ben Opera GX tarzı özel yapay zekânım. 
+                Gerçek Grok bağlantısını istersen 1 dakikada eklerim, şimdilik demo moddayım 😎`;
+            }, 1200);
+            input.value = '';
+        }
+
+        btn.onclick = sor;
+        input.addEventListener('keyup', e => e.key === 'Enter' && sor());
+    </script>
+</body>
+</html>
